@@ -13,7 +13,7 @@ class UserController extends Controller
             $google_redirect_url = route('glogin');
             
             $gClient = new \Google_Client();
-            $gClient->setApplicationName(config('services.google.app_name'));
+            $gClient->setApplicationName(config('app.name'));
             $gClient->setClientId(config('services.google.client_id'));
             $gClient->setClientSecret(config('services.google.client_secret'));
             $gClient->setRedirectUri($google_redirect_url);

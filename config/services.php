@@ -13,6 +13,12 @@ return [
     | to have a conventional place to find your various credentials.
     |
     */
+    'google' => [
+        'client_id'     => env('GOOGLE_ID'),
+        'client_secret' => env('GOOGLE_SECRET'),
+        'redirect'      => env('GOOGLE_REDIRECT'),
+        'api_key' => env('GOOGLE_API_KEY')
+    ],
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
