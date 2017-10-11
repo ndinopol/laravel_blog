@@ -8,6 +8,16 @@ use App\User;
 class UserController extends Controller
 {
    
+        /**
+         * Create a new controller instance.
+         *
+         * @return void
+         */
+        public function __construct()
+        {
+            //$this->middleware('auth');
+        }
+
         public function googleLogin(Request $request)  {
 
             $google_redirect_url = route('glogin');
@@ -25,11 +35,10 @@ class UserController extends Controller
                 'https://www.googleapis.com/auth/userinfo.profile',
             ));
             
-            $google_oauthV2 = new \Google_Service_Oauth2($gClient);
-                
             
+            $google_oauthV2 = new \Google_Service_Oauth2($gClient);
+                    
             if ($request->get('code')){
-                
                 $gClient->authenticate($request->get('code'));
                 $request->session()->put('token', $gClient->getAccessToken());
             }
@@ -42,14 +51,21 @@ class UserController extends Controller
             if ($gClient->getAccessToken())
             {
                 //For logged in user, get details from google using access token
-                $guser = $google_oauthV2->userinfo->get();  
-                   
-                    $request->session()->put('name', $guser['name']);
-                    if ($user =User::where('email',$guser['email'])->first())
+                $gUser = $google_oauthV2->userinfo->get();  
+                  
+                    $request->session()->put('name', $gUser['name']);
+                    if ($user = User::where('email',$gUser['email'])->first())
                     {
-                        //logged your user via auth login
+                        //Auth::login($user);
                     }else{
-                        //register your user with response data
+                        $user = new User();
+                        $name = $gUser['givenName'].' '.$gUser['familyName'];
+                        $user->name = $name;
+                        $user->email = $gUser['email'];
+                        $user->picture = $gUser['picture'];
+                        $user->remember_token = $gClient->getAccessToken()['access_token'];
+                        $user->password = 
+                        $user->save();
                     }               
              return redirect()->route('user.glist');          
             } else
@@ -63,7 +79,7 @@ class UserController extends Controller
         }
 
         public function listGoogleUser(Request $request){
-          $users = User::orderBy('id','DESC')->paginate(5);
-         return view('users',compact('users'))->with('i', ($request->input('page', 1) - 1) * 5);;
+          $users = User::orderBy('id','DESC')->paginate(1);
+         return view('users',compact('users'))->with('i', ($request->input('page', 1) - 1) * 1);;
         }
 }

@@ -19,3 +19,6 @@ Route::get('/', function () {
 Route::get('/signin',array('as'=>'glogin','uses'=>'UserController@googleLogin')) ;
 Route::get('/dashboard',array('as'=>'user.glist','uses'=>'UserController@listGoogleUser')) ;
 Auth::routes();
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
