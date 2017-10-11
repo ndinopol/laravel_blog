@@ -13,9 +13,9 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/') }}">View Site</a>
             </li>
-            <!--<li class="nav-item">
+            <li class="nav-item">
               <a class="nav-link" href="{{ url('/logout') }}">Logout</a>
-            </li>-->
+            </li>
           </ul>
       </div>
     </nav>
@@ -46,8 +46,10 @@
                             </div>
                         </div>
                 </div>
-                
-                <button type="submit" class="btn btn-default pull-right">Submit</button>
+                <div class="form-group pull-right">
+                    <button type="submit" style="" class="btn btn-primary">Publish</button>
+                    <button type="submit" class="btn btn-default">Unpublish</button>
+                </div>
             </form>
         </div>    
     </div>

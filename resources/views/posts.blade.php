@@ -13,9 +13,9 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/') }}">View Site</a>
             </li>
-            <!--<li class="nav-item">
+            <li class="nav-item">
               <a class="nav-link" href="{{ url('/logout') }}">Logout</a>
-            </li>-->
+            </li>
           </ul>
       </div>
     </nav>
@@ -33,6 +33,7 @@
                 <tr>
                     <th>Post ID</th>
                     <th>Title</th>
+                    <th>Status</th>
                     <th>Date Created</th>
                     <th>Date Updated</th>
                     <th>Actions</th>
@@ -41,6 +42,7 @@
             <tr>
                 <td>{{ $post->id }}</td>
                 <td>{{ $post->title }}</td>
+                <th>{{ $post->status }}</th>
                 <td>{{ $post->created_at->diffForHumans() }}</td>
                 <td>{{ $post->updated_at->diffForHumans() }}</td>  
                 <td></td> 
