@@ -11,7 +11,11 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/signin') }}">Sign In</a>
+                @if( !empty($user['name']) && !empty($user['email']) )
+                  <a class="nav-link" href="{{ url('/dashboard') }}">Go To Dashboard</a>
+                @else
+                  <a class="nav-link" href="{{ url('/signin') }}">Sign In</a>
+                @endif
             </li>
           </ul>
         </div>

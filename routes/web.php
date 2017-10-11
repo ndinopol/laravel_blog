@@ -12,12 +12,16 @@
 */
 
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('index');
-});
 
+});*/
+
+Route::get('/',array('as' => 'index', 'uses' => 'UserController@index'));
 Route::get('/signin',array('as'=>'glogin','uses'=>'UserController@googleLogin')) ;
-Route::get('/dashboard',array('as'=>'user.glist','uses'=>'UserController@listGoogleUser')) ;
+Route::get('/dashboard',array('as'=>'user.posts','uses'=>'PostsController@show')) ;
+Route::get('/dashboard/post',array('as'=>'user.addposts','uses'=>'PostsController@create')) ;
+Route::get('/logout',array('as'=>'user.logout','uses'=>'UserController@logout')) ;
 Auth::routes();
 Auth::routes();
 
