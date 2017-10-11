@@ -11,9 +11,11 @@
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
 
-Route::get('/',array('as'=>'glogin','uses'=>'UserController@googleLogin')) ;
-Route::get('google-user',array('as'=>'user.glist','uses'=>'UserController@listGoogleUser')) ;
+Route::get('/', function () {
+    return view('index');
+});
+
+Route::get('/signin',array('as'=>'glogin','uses'=>'UserController@googleLogin')) ;
+Route::get('/dashboard',array('as'=>'user.glist','uses'=>'UserController@listGoogleUser')) ;
+Auth::routes();

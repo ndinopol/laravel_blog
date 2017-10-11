@@ -16,7 +16,7 @@ class UserController extends Controller
             $gClient->setApplicationName(config('app.name'));
             $gClient->setClientId(config('services.google.client_id'));
             $gClient->setClientSecret(config('services.google.client_secret'));
-            $gClient->setRedirectUri($google_redirect_url);
+            $gClient->setRedirectUri(config('services.google.redirect'));
             $gClient->setDeveloperKey(config('services.google.api_key'));
             
             $gClient->setScopes(array(
@@ -26,8 +26,10 @@ class UserController extends Controller
             ));
             
             $google_oauthV2 = new \Google_Service_Oauth2($gClient);
+                
             
             if ($request->get('code')){
+                
                 $gClient->authenticate($request->get('code'));
                 $request->session()->put('token', $gClient->getAccessToken());
             }
@@ -54,11 +56,14 @@ class UserController extends Controller
             {
                 //For Guest user, get google login url
                 $authUrl = $gClient->createAuthUrl();
+                print($authUrl);
+                exit;
                 return redirect()->to($authUrl);
             }
         }
+
         public function listGoogleUser(Request $request){
           $users = User::orderBy('id','DESC')->paginate(5);
-         return view('users.list',compact('users'))->with('i', ($request->input('page', 1) - 1) * 5);;
+         return view('users',compact('users'))->with('i', ($request->input('page', 1) - 1) * 5);;
         }
 }
