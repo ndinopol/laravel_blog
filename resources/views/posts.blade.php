@@ -39,8 +39,8 @@
                 </tr>
             @foreach ($posts as $post)
             <tr>
-                <td>{{ $post->post_id }}</td>
-                <td>{{ $post->name }}</td>
+                <td>{{ $post->id }}</td>
+                <td>{{ $post->title }}</td>
                 <td>{{ $post->created_at->diffForHumans() }}</td>
                 <td>{{ $post->updated_at->diffForHumans() }}</td>  
                 <td></td> 

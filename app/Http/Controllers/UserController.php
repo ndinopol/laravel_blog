@@ -63,8 +63,7 @@ class UserController extends Controller
                     $gClient->setAccessToken($request->session()->get('token'));
                 }
                           
-                
-                if ($gClient->getAccessToken() && $request->session()->get('token'))
+                if ($request->session()->get('token'))
                 {
                 
                     $google_oauthV2 = new \Google_Service_Oauth2($gClient);
@@ -108,7 +107,6 @@ class UserController extends Controller
            $request->session()->forget('email');
            $request->session()->forget('token');
            
-           //print_r($request->session());exit;
            return redirect()->route('index');
        } 
 }

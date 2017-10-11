@@ -47,9 +47,12 @@ class PostsController extends Controller
      */
     public function show(Request $request)
     {
-       
-        $posts = Post::orderBy('post_id','DESC')->paginate(5);
-        return view('posts',compact('posts'))->with('i', ($request->input('page', 1) - 1) * 1);;
+       if( $request->session()->get('email') ){
+            $posts = Post::Where('email', '=', $request->session()->get('email'))->orderBy('post_id','DESC')->paginate(10);
+            return view('posts',compact('posts'))->with('i', ($request->input('page', 1) - 1) * 1);
+       }
+
+       return redirect()->route('index'); 
         
     }
 
