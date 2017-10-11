@@ -13,7 +13,12 @@ p {
   margin: 30px 0; }
   p a {
     text-decoration: underline; }
-
+.pagination li{
+    width: 32px;
+    background-color: #ccc;
+    margin: 2px;
+    text-align: center;
+}
 h1,
 h2,
 h3,
