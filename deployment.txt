@@ -1,22 +1,42 @@
 By: Nino Dinopol
 
 Requirements
- 		1. php 7 and above
+ 		1. php version 7 and above
  		2. composer
- 		3. mysql 
+ 		3. mysql version 5.7 up
  		4. any web server
 
 Instruction to Deploy the site
 
-    1. You need to create project directory "laravel_blog" in the location where you want to install the app (example : var/www/html/ or htdocs depends on your operational system)
-	2. You need to pull the source code from github (https://github.com/ndinopol/laravel_blog.git) and store it in "laravel_blog" directory you created 
-	3. Setup httpd configuration to listen port 8383. Used port 8383 because that is the port I used in registering google sign callback. Just change httpd.conf to listen port 8383
-	4. Once done pulling code from github. Locate DB file in root directory of your project. I named it "blog.sql" and import it in your localhost Database.
-	5. locate env.php file in root directory of your project. And then change mysql DB configuration based on your server DB credential.
+    1. You need to create project directory "blogs" in the location where you want to install the app (example : var/www/html/ or in xampp(/htdocs) or wamp in (/www) depends on your operational system use)
+	
+	2. You need to pull the source code from github (https://github.com/ndinopol/laravel_blog.git) and store it in "blogs" directory you created 
+	
+	3. Setup httpd configuration to listen port 8383. Use port 8383 because that is the port I used in registering google sign callback. Just change httpd.conf to listen port 8383
+	
+	4. Once done pulling code from github. Locate DB file in root directory of your blogs project. I named it "blogs.sql" and import it in your localhost Database.
+	
+	5. locate env.php file in root directory of your blogs project. And then change mysql DB configuration based on your server DB credential.
+	     
+		 example : 
+
+		        DB_CONNECTION=mysql
+				DB_HOST=127.0.0.1
+				DB_PORT=3306
+				DB_DATABASE=blogs
+				DB_USERNAME=root
+				DB_PASSWORD=null
+	
 	6. For Windows, open command prompt and go to root directory of project. 
+
+	    example : cd c:/xampp/htdocs/blogs
+
 	   For Linux/Mac , open terminal  and go to root directory of project. 
+
 	7. run <composer update>  -- this is to pull the vendors requirement to run the app.
-	8. Once successfully installed the dependencies. you can access the app using port 8383 "http://localhost:8383/laravel_blog/public"
+	
+	8. Once successfully installed the dependencies. you can access the app using port 8383 "http://localhost:8383/blogs/public"
+	
 	9. Finish
 
 
@@ -25,6 +45,6 @@ Instruction to Deploy the site
 	*You shoud update your php.ini file. and add at the bottom of php.ini the following code below.
 
     [curl]
-    curl.cainfo="C:\wamp64\www\laravel_blog\cacert.pem" 
+    curl.cainfo="C:\wamp64\www\blogs\cacert.pem" 
 
     * note "C:\wamp64\www\" is the directory path of my local machine. You can change it to your directory path.
