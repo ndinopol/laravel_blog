@@ -34,15 +34,17 @@
                       <h2 class="post-title">
                           {{ $post->title }}
                       </h2>
-                      <h3 class="post-subtitle">
-                        {!! $post->body_html !!}
-                      </h3>
+                      
                     </a>
+                    <div class="post-subtitle">
+                        {!! $post->body_html !!}
+                    </div>
                     <p class="post-meta">Posted by
                       <a href="#">{{ $post->email }}</a>
                    on {{ \Carbon\Carbon::parse($post->created_at)->format('M, d Y H:i:s')  }}</p>
                     
               </div>
+              <hr/>
               @endforeach
            
             
