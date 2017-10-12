@@ -139,8 +139,6 @@
                             data: data,
                             success: function () {
                                 $('#title').val('')
-                                $('.CodeMirror-lines').html('');
-                                $('.editormd-preview-container').html('');
                                 $('.alert-success').css({'display':''});
                                 $('.alert-danger').css({'display':'none'});
                             },
