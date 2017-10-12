@@ -40,7 +40,7 @@
                     </a>
                     <p class="post-meta">Posted by
                       <a href="#">{{ $post->email }}</a>
-                   {{ $post->created_at->diffForHumans() }}</p>
+                   on {{ \Carbon\Carbon::parse($post->created_at)->format('M, d Y H:i:s')  }}</p>
                     
               </div>
               @endforeach

@@ -11,14 +11,7 @@ class UserController extends Controller
    
         public function index(Request $request){
               
-              //$posts = Post::where('status', '=', 'publish')->orderBy('id','DESC')->take(5)->paginate();
-              //$posts = $data->paginate(1);
-              /*$posts = Post::where('status', '=', 'publish')->with(['id' => function($q) {
-                        $q->take(5)->paginate(1);
-                }])->get();*/
-              ///$posts = $posts->paginate(1);
-             
-              $posts = Post::Where('status', '=', 'publish')->orderBy('id','DESC')->paginate(5);
+             $posts = Post::Where('status', '=', 'publish')->orderBy('id','DESC')->paginate(5);
              return view('index',compact('posts'))->with('i', ($request->input('page', 1) - 1) * 1);
         }
 
