@@ -4,26 +4,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Post;
 
 class UserController extends Controller
 {
    
         public function index(Request $request){
-            $user = array(
-                      'name' => null,
-                      'email' => null,
-                      'code' => null
-                  );
               
-              if( $request->session()->get('email') ){
-                  $user = array(
-                      'name' => $request->session()->get('name'),
-                      'email' => $request->session()->get('email'),
-                      'code' => $request->session()->get('code')
-                  );
-              }
-              return \View::make('index', compact('user', $user));
+              //$posts = Post::where('status', '=', 'publish')->orderBy('id','DESC')->take(5)->paginate();
+              //$posts = $data->paginate(1);
+              /*$posts = Post::where('status', '=', 'publish')->with(['id' => function($q) {
+                        $q->take(5)->paginate(1);
+                }])->get();*/
+              ///$posts = $posts->paginate(1);
+             
+              $posts = Post::Where('status', '=', 'publish')->orderBy('id','DESC')->paginate(5);
+             return view('index',compact('posts'))->with('i', ($request->input('page', 1) - 1) * 1);
         }
+
         /**
          * Create a new controller instance.
          *
@@ -35,7 +33,7 @@ class UserController extends Controller
         }
 
         public function googleLogin(Request $request)  {
-            if( !$request->session()->get('email') ){
+            //if( !$request->session()->get('email') ){
                 $google_redirect_url = route('glogin');
                 
                 $gClient = new \Google_Client();
@@ -95,9 +93,9 @@ class UserController extends Controller
                     $authUrl = $gClient->createAuthUrl();
                     return redirect()->to($authUrl);
                 }
-            }else{
-               return redirect()->route('index');          
-            }
+            //}else{
+               //return redirect()->route('index');          
+            //}
         }
 
        public function logout(Request $request){

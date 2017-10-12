@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                @if( !empty($user['name']) && !empty($user['email']) )
+                @if( !empty(Session::get('name')) && !empty(Session::get('email')) )
                   <a class="nav-link" href="{{ url('/dashboard') }}">Go To Dashboard</a>
                 @else
                   <a class="nav-link" href="{{ url('/signin') }}">Sign In</a>
@@ -27,23 +27,32 @@
     
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
+          
+            @foreach ($posts as $post)
+              <div class="post-preview">
+                    <a href="javascript:void();">
+                      <h2 class="post-title">
+                          {{ $post->title }}
+                      </h2>
+                      <h3 class="post-subtitle">
+                        {!! $post->body_html !!}
+                      </h3>
+                    </a>
+                    <p class="post-meta">Posted by
+                      <a href="#">{{ $post->email }}</a>
+                   {{ $post->created_at->diffForHumans() }}</p>
+                    
+              </div>
+              @endforeach
+           
+            
           <div class="post-preview">
-            <a href="post.html">
-              <h2 class="post-title">
-                Man must explore, and this is exploration at its greatest
-              </h2>
-              <h3 class="post-subtitle">
-                Problems look mighty small from 150 miles up
-              </h3>
-            </a>
-            <p class="post-meta">Posted by
-              <a href="#">Start Bootstrap</a>
-              on September 24, 2017</p>
+            
           </div>
           <hr>
           <!-- Pager -->
           <div class="clearfix">
-            <a class="btn btn-secondary float-right" href="#">Older Posts &rarr;</a>
+            {!! $posts->render() !!}
           </div>
         </div>
       </div>

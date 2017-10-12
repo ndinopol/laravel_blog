@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Blog</title>
 
@@ -31,6 +32,7 @@
 	    <script src="{{URL::asset('/vendor/popper/popper.min.js')}}"></script>
 	    <script src="{{URL::asset('/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 	    <script src="{{URL::asset('/js/blog.js')}}"></script>
+        <script src="{{URL::asset('/js/formvalidation.js')}}"></script>
         @yield('md')
     </body>
 </html>

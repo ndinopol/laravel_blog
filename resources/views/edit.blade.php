@@ -29,7 +29,7 @@
 @section('content')
     <div class="row paddingBottom15">
         <div class="col-sm-12">
-            <h1>Creating New Post</h1>
+            <h1>Editting Post</h1>
             <hr/>
         </div>
         <div class="col-sm-12">
@@ -40,7 +40,7 @@
         <div class="col-sm-12">
             <form method="POST" id="form_post">
                 <div class="alert alert-success" style="display:none;">
-                    <strong>Success!</strong> Successfully Submitted.
+                    <strong>Success!</strong> Successfully Editted.
                 </div>
                 <div class="alert alert-danger" style="display:none;">
                     <strong>Danger!</strong> Error Submitting Data.
@@ -48,13 +48,13 @@
                   {{ csrf_field() }}
                 <div class="form-group">
                     <label for="email">Title</label>
-                    <input type="text" class="form-control" id="title" name="title" req="true" message="Title is required">
+                    <input type="text" class="form-control" id="title" value="{{ $post->title}}" name="title" req="true" message="Title is required">
                 </div>
                 <div class="form-group">
                     <label for="body">Body:</label>
                     <div id="layout">
                             <div id="test-editormd">
-                                <textarea style="display:none;"></textarea>
+                                <textarea style="display:none;">{{ $post->body_md }}</textarea>
                             </div>
                         </div>
                 </div>
@@ -71,9 +71,7 @@
 @section('md')
         <script src="{{URL::asset('/js/editormd.min.js')}}"></script>
         <script type="text/javascript">
-			
-
-            $(function() {
+			$(function() {
                 var testEditor;
                 testEditor = editormd("test-editormd", {
                     width   : "100%",
@@ -81,7 +79,8 @@
                     syncScrolling : "single",
                     path    : "../lib/"
                 });
-              var Form = {
+
+               var Form = {
                     validate : function(id){
                         var ret = true;
                             
@@ -135,12 +134,9 @@
 
                         $.ajax({
                             type: 'post',
-                            url: "{{ url('/dashboard/post') }}",
+                            url: "{{ url('/edit') }}/{{ $post->id}}",
                             data: data,
                             success: function () {
-                                $('#title').val('')
-                                $('.CodeMirror-lines').html('');
-                                $('.editormd-preview-container').html('');
                                 $('.alert-success').css({'display':''});
                                 $('.alert-danger').css({'display':'none'});
                             },

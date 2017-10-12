@@ -19,6 +19,7 @@ p {
     background-color: #ccc;
     margin: 2px;
     text-align: center;
+    border-radius: 2px;
 }
 .pagination li.active{
     background-color: #fff;
@@ -63,6 +64,9 @@ blockquote {
   padding-bottom:15px;
 }
 
+.row-action{
+  font-size:11px;
+}
 .section-heading {
   font-size: 36px;
   font-weight: 700;
@@ -319,15 +323,6 @@ footer {
     font-size: 14px;
     margin-bottom: 0;
     text-align: center; }
-
-.btn {
-  font-size: 14px;
-  font-weight: 800;
-  padding: 15px 25px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  border-radius: 0;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
 
 .btn-primary {
   color: white;
