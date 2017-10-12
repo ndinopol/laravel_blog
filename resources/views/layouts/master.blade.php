@@ -16,6 +16,7 @@
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href="{{ asset('/css/blog.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/css/editormd.css') }}" />
 
   </head>
     <body>
@@ -26,10 +27,11 @@
         </div>
 
         <!-- Bootstrap core JavaScript -->
-	    <script src="{{URL::asset('assets/vendor/jquery/jquery.min.js')}}"></script>
-	    <script src="{{URL::asset('assets/vendor/popper/popper.min.js')}}"></script>
-	    <script src="{{URL::asset('assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-	    <script src="{{URL::asset('assets/js/blog.js')}}"></script>
+	    <script src="{{URL::asset('/vendor/jquery/jquery.min.js')}}"></script>
+	    <script src="{{URL::asset('/vendor/popper/popper.min.js')}}"></script>
+	    <script src="{{URL::asset('/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+	    <script src="{{URL::asset('/js/blog.js')}}"></script>
+        @yield('md')
     </body>
 </html>
 
